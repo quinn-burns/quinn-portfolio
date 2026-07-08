@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens — Quinn Burns portfolio
+   Earthy neutrals as the base, terracotta primary, sage secondary.
+   The work is the hero; color adds warmth, never noise.
+--------------------------------------------------------------------------- */
+
+@theme {
+  /* ---- Color ---- */
+
+  /* Neutrals (warm) */
+  --color-cream: #faf7f1; /* page background */
+  --color-sand: #f2ebdf; /* raised surfaces, cards, image mats */
+  --color-linen: #e6dccb; /* hairline borders, dividers */
+  --color-taupe: #8b7d6b; /* decorative / large-type neutral only */
+  --color-stone: #64584c; /* secondary text — AA on cream */
+  --color-ink: #2a211b; /* primary text, warm near-black */
+
+  /* Terracotta — primary accent */
+  --color-terracotta: #c05b35; /* fills, large accents, hover washes */
+  --color-terracotta-deep: #9c421e; /* text-safe: links, small accents — AA on cream */
+  --color-terracotta-wash: #f3e0d5; /* tinted backgrounds, tag fills */
+
+  /* Sage — secondary accent */
+  --color-sage: #98a78b; /* fills, illustration, chart tones */
+  --color-sage-deep: #52644a; /* text-safe sage — AA on cream */
+  --color-sage-wash: #e7ebdf; /* tinted backgrounds, tag fills */
+
+  /* ---- Typography ----
+     Display: Fraunces (variable, optical sizing) — confident, warm serif
+     Body/UI: Instrument Sans — clean, contemporary, no default-template feel
+     Fonts load via next/font in app/layout.tsx; these vars are set there. */
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-instrument-sans);
+
+  /* Fluid type scale */
+  --text-display: clamp(2.875rem, 1.6rem + 5.4vw, 5.5rem); /* hero statement */
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.02em;
+
+  --text-title: clamp(2rem, 1.45rem + 2.3vw, 3rem); /* page + case study titles */
+  --text-title--line-height: 1.08;
+  --text-title--letter-spacing: -0.015em;
+
+  --text-heading: clamp(1.5rem, 1.3rem + 0.85vw, 1.875rem); /* section headings */
+  --text-heading--line-height: 1.2;
+  --text-heading--letter-spacing: -0.01em;
+
+  --text-subheading: 1.25rem; /* h3, card titles */
+  --text-subheading--line-height: 1.35;
+
+  --text-lede: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem); /* intros, hooks */
+  --text-lede--line-height: 1.55;
+
+  --text-body: 1.0625rem; /* case study prose */
+  --text-body--line-height: 1.7;
+
+  --text-caption: 0.875rem; /* figure captions, card blurbs */
+  --text-caption--line-height: 1.55;
+
+  --text-label: 0.75rem; /* metadata labels, tags, nav */
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0.08em;
+
+  /* ---- Motion ---- */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-reveal: 600ms;
+
+  /* ---- Radii ---- */
+  --radius-card: 1rem;
+  --radius-tag: 9999px;
+}
+
+/* ---- Base ---- */
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: var(--color-terracotta);
+  color: var(--color-cream);
+}
+
+/* Comfortable reading measure for case study prose */
+@utility measure {
+  max-width: 65ch;
+}
+
+/* Hand-drawn-feeling underline accent (used sparingly: hero, section marks).
+   The squiggle is an inline SVG stroke so it inherits currentColor. */
+@utility underline-sketch {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 9' preserveAspectRatio='none'%3E%3Cpath d='M2 6.5C20 3 38 3.5 59 5.5 80 7.5 100 4 118 3' fill='none' stroke='%23c05b35' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 0.42em;
+  padding-bottom: 0.24em;
+}
+
+/* Scroll reveal — opt-in via .reveal on elements observed by <Reveal/>.
+   Gated on the .js root class so nothing is hidden without JavaScript,
+   and disabled entirely under prefers-reduced-motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition:
+      opacity var(--duration-reveal) var(--ease-out-soft),
+      transform var(--duration-reveal) var(--ease-out-soft);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}

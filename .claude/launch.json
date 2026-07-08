@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio-dev",
+      "runtimeExecutable": "/Users/quinnburns/.nvm/versions/node/v22.22.3/bin/node",
+      "runtimeArgs": ["node_modules/next/dist/bin/next", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "portfolio-prod",
+      "runtimeExecutable": "/Users/quinnburns/.nvm/versions/node/v22.22.3/bin/node",
+      "runtimeArgs": ["node_modules/next/dist/bin/next", "start"],
+      "port": 3000
+    }
+  ]
+}
