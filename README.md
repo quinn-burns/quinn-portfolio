@@ -104,4 +104,4 @@ Your domain currently points at Wix. Two situations:
 
 ## Writing case studies
 
-Read `CONTENT_GUIDE.md` — it's the pre-publish checklist. The short version: the scaffold copy in `content/projects/` models the structure (outcome-led hooks, evidence over claims, captions that explain *why*), but **every specific fact in the scaffolds is invented**. Replace them with your real numbers, quotes, and findings.
+Read `CONTENT_GUIDE.md` — it's the pre-publish checklist. All eight current case studies use your real copy (sourced from the Wix site) and your real images. Figure captions and the "Key decisions" trade-off text were derived from that copy to fit the template — worth a read-through in your own voice before going live. The optional fields (`timeline`, `tools`, `outcome.learned`, `outcome.results`) only render when present, so never fill one with something generic or untrue.

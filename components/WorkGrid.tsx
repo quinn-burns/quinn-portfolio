@@ -65,15 +65,28 @@ export function WorkGrid({ projects }: { projects: Project[] }) {
         ))}
       </div>
 
-      <ul className="mt-10 grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2">
-        {visible.map((project, i) => (
-          <li key={project.slug}>
-            <Reveal delay={(i % 2) * 80}>
-              <ProjectCard project={project} priority={i < 2} />
-            </Reveal>
-          </li>
-        ))}
-      </ul>
+      {visible.length > 0 ? (
+        <ul className="mt-10 grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2">
+          {visible.map((project, i) => (
+            <li key={project.slug}>
+              <Reveal delay={(i % 2) * 80}>
+                <ProjectCard project={project} priority={i < 2} />
+              </Reveal>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className="mt-10 rounded-2xl border border-linen bg-sand/60 p-8">
+          <p className="font-display text-subheading font-medium text-ink">
+            UX &amp; UI case studies are in the works.
+          </p>
+          <p className="mt-2 max-w-lg text-caption text-stone">
+            In the meantime, the industrial design work below the fold shows
+            how I think — and my published UX research lives in Always
+            Creating.
+          </p>
+        </div>
+      )}
     </div>
   );
 }

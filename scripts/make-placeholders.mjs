@@ -13,14 +13,11 @@ import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
+// Add an entry here when you start a NEW project and want placeholder
+// images before your real ones exist. (All current projects use real
+// images — this script never touches .jpg/.png files.)
 const projects = {
-  mise: { title: "Mise", color: "#c9a68a" },
-  "lefties-kitchen": { title: "Lefties Kitchen", color: "#a3b18a" },
-  memomir: { title: "MemoMir", color: "#a89f91" },
-  dash: { title: "Dash", color: "#8a9b84" },
-  "solea-margot": { title: "Soléa Margot", color: "#b98b73" },
-  forage: { title: "Forage", color: "#9caf88" },
-  ripple: { title: "Ripple", color: "#c4a484" },
+  // "my-new-project": { title: "My New Project", color: "#c9a68a" },
 };
 
 const figureSlots = [
@@ -36,13 +33,7 @@ const figureSlots = [
   "final-2",
 ];
 
-const aboutImages = {
-  fourteeners: { title: "14ers", color: "#8a9b84" },
-  sourdough: { title: "Sourdough", color: "#c9a68a" },
-  alaska: { title: "Alaska", color: "#7f8f7a" },
-  guitar: { title: "Guitar", color: "#b98b73" },
-  ubicomp: { title: "UbiComp / ISWC", color: "#a89f91" },
-};
+const aboutImages = {};
 
 function svg({ w, h, color, title, label }) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">

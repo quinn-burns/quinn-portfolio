@@ -3,9 +3,10 @@ import { mise } from "@/content/projects/mise";
 import { leftiesKitchen } from "@/content/projects/lefties-kitchen";
 import { memomir } from "@/content/projects/memomir";
 import { dash } from "@/content/projects/dash";
+import { kairn } from "@/content/projects/kairn";
+import { olive } from "@/content/projects/olive";
 import { soleaMargot } from "@/content/projects/solea-margot";
-import { forage } from "@/content/projects/forage";
-import { ripple } from "@/content/projects/ripple";
+import { terraShelf } from "@/content/projects/terra-shelf";
 
 /**
  * To add a project: create content/projects/<slug>.ts (copy an existing one),
@@ -17,9 +18,10 @@ const all: Project[] = [
   leftiesKitchen,
   memomir,
   dash,
+  kairn,
+  olive,
   soleaMargot,
-  forage,
-  ripple,
+  terraShelf,
 ];
 
 export const projects: Project[] = [...all].sort((a, b) => a.order - b.order);

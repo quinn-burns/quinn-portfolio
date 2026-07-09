@@ -1,35 +1,36 @@
 import type { Experiment } from "@/lib/types";
 
 /**
- * "Always Creating" — smaller experiments and side work.
- * Add, remove, or reorder freely; each item is one card in the strip.
+ * "Always Creating" — from the Wix site: "from nutrition guides and app
+ * design to content creation, chatbots, and published research!"
+ * Add, remove, or reorder freely; each item is one row in the strip.
  */
 export const experiments: Experiment[] = [
   {
     title: "Published research",
-    blurb: "Co-authored a peer-reviewed paper on human-centered mental health app design, presented at ACM UbiComp/ISWC.",
+    blurb: "Co-authored a peer-reviewed paper on human-centered mental health app design; presented at ACM UbiComp/ISWC.",
     tag: "Research",
     // href: "https://doi.org/…", // add your DOI or proceedings link
   },
   {
     title: "Nutrition guides",
-    blurb: "Designed practical, visual nutrition guides that make good eating decisions faster than bad ones.",
+    blurb: "Guides built on my NASM nutrition coaching certification.",
     tag: "Information design",
   },
   {
-    title: "App experiments",
-    blurb: "Small interface studies and app concepts — testing ideas too fast-moving for a full case study.",
+    title: "App design",
+    blurb: "Digital design work — UX case studies coming to the site soon.",
     tag: "UX & UI",
   },
   {
     title: "made.by.quinn_",
-    blurb: "Documenting the making — process, prototypes, and projects as they happen.",
+    blurb: "Content creation — documenting projects and process as they happen.",
     tag: "Content",
     href: "https://www.instagram.com/made.by.quinn_",
   },
   {
-    title: "Chatbot builds",
-    blurb: "Building conversational tools to learn where AI genuinely helps a design process — and where it doesn't.",
+    title: "Chatbots",
+    blurb: "Conversational tool experiments.",
     tag: "AI",
   },
 ];

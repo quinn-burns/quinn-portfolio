@@ -1,79 +1,103 @@
 import type { Project } from "@/lib/types";
 
 /**
- * SCAFFOLD COPY — structure and voice are the model; the specifics are
- * invented. Replace every fact with your real evidence before publishing.
+ * Copy sourced from quinn-burns.com/lefties-kitchen — edited only to fit
+ * the template.
  */
 export const leftiesKitchen: Project = {
   slug: "lefties-kitchen",
   title: "Lefties Kitchen",
-  hook: "Imaginative play that plants lifelong habits — kids learn to use food fully, and waste less, by playing restaurant.",
+  hook: "A children's toy where yesterday's leftovers become today's creations.",
   category: "industrial",
-  tags: ["Industrial Design", "Play & Learning", "Sustainability"],
-  cover: "/images/projects/lefties-kitchen/cover.svg",
-  coverAlt: "Lefties Kitchen play set with modular play-food pieces",
+  tags: ["Toy Design", "Sustainability", "Early Childhood Learning"],
+  cover: "/images/projects/lefties-kitchen/cover.jpg",
+  coverAlt: "Lefties Kitchen toy set with modular wooden food pieces",
   order: 2,
 
-  role: "Industrial designer — I led play-testing and designed the food-scrap play system",
-  team: "Team of 3 (I led research + play system; teammates led kitchen structure and packaging)",
-  timeline: "8 weeks · Spring 2025",
-  tools: ["Play-testing", "Figma", "Rhino", "CNC + laser-cut prototypes"],
-  projectType: "Studio project",
+  role: "Designer & maker — concept, modeling, CNC cutting, and hand fabrication",
+  team: "Solo",
+  tools: ["Fusion 360", "CNC", "Hand fabrication", "Paint & finishing"],
+  projectType: "Toy design",
 
-  tldr: "Kids form food habits years before they cook. Watching play-kitchen sessions, my team noticed that every toy food is a perfect, finished object — play teaches that food appears whole and vanishes when you're done. I designed the play-food system for Lefties Kitchen: modular ingredients that come apart into scraps, and scraps that become new play value (stock, compost, garden). Play-testing with kids showed them inventing waste-reduction narratives unprompted.",
+  tldr: "Lefties Kitchen is a food-building toy designed to help kids around age 6 build sustainable habits early. By turning leftovers into reusable, modular \"leftie\" pieces, the product reframes food reuse as something creative and playful rather than something to avoid or tolerate. I modeled it in Fusion 360, CNC cut all 33 wooden pieces, and finished every piece by hand.",
 
   context: [
     {
       type: "text",
       body: [
-        "Play kitchens are one of the most-owned toy categories, and nearly all of them share a quiet assumption: food is a prop. A plastic tomato is eternally whole. There is no peel, no scrap, no leftover — and so the 'cooking' story a child rehearses hundreds of times has no chapter about what happens to the rest of the carrot.",
-        "We observed play sessions at a campus early-learning center and saw the script in action: kids 'cooked,' 'served,' and then dumped everything back in the bin — meal over, food gone. The toy was teaching a disposal model. That observation became our brief: what if the play system made using food fully the fun part?",
+        "Food waste is a habit problem. Every year, millions of tons of perfectly good food are thrown away, not because it's spoiled, but because habits around using leftovers were never really formed. By the time we're adults, those habits are already set, and changing them is hard. If we want to meaningfully reduce food waste, we have to design for behavior, and that means starting earlier.",
+        "Kids between the ages of 4–7 are in a key window for forming lifelong routines. At this stage, learning happens through play, experimentation, and exploration, not lectures. I saw an opportunity to introduce sustainable thinking in a way that feels natural, embedding reuse into play before non-sustainable habits become the default.",
       ],
+    },
+    {
+      type: "figure",
+      figure: {
+        src: "/images/projects/lefties-kitchen/problem.png",
+        alt: "Food waste problem illustration",
+        caption: "The framing that drives the project: food waste is a habit problem, and habits form years before anyone cooks a real meal.",
+      },
+      size: "wide",
+    },
+    {
+      type: "quote",
+      text: "How might I design a play experience to build more sustainable habits from an early age?",
+      attribution: "The design question · Playful · Open-Ended · Intuitive · Creative · Sustainable",
     },
   ],
 
   process: [
     {
-      heading: "Watching how kids actually play",
+      heading: "Structuring the play",
       blocks: [
         {
           type: "text",
           body: [
-            "We ran observation sessions before designing anything, tracking what kids did between 'cooking' and 'cleanup.' The gap was the insight: cleanup was a chore phase with zero narrative. Meanwhile, the richest play happened when a kid invented a problem — a spill, a missing ingredient. Constraint, not abundance, drove imagination.",
+            "I spent a lot of time thinking through the structure of play. From the start, it was important to me that the toy supported both guided play and open-ended exploration, giving kids enough direction to get started while still leaving room for imagination.",
+            "I also considered which foods to include. I asked questions like what leftovers actually look like in a typical fridge, what foods a six-year-old would recognize, and how the set could gently introduce ideas around balanced meals with fruits and vegetables without feeling instructional.",
           ],
         },
         {
           type: "figure",
           figure: {
-            src: "/images/projects/lefties-kitchen/research-1.svg",
-            alt: "Notes and photos from play observation sessions",
-            caption: "Session notes. The pattern that mattered: invented problems produced the longest, most engaged play arcs — so waste became a problem worth playing with.",
+            src: "/images/projects/lefties-kitchen/research.jpg",
+            alt: "Research into play structure and food selection",
+            caption: "Working through which foods belong in the set: recognizable to a six-year-old, true to a real fridge, and quietly nudging toward balanced meals.",
+          },
+          size: "wide",
+        },
+        {
+          type: "figure",
+          figure: {
+            src: "/images/projects/lefties-kitchen/concepts.jpg",
+            alt: "Concept development for modular leftie pieces",
+            caption: "Abstracting familiar foods into playful forms that still feel recognizable. Each \"leftie\" piece connects, stacks, and transforms — there is no right way to build a meal.",
           },
           size: "wide",
         },
       ],
     },
     {
-      heading: "Designing food that comes apart",
+      heading: "Bringing Lefties Kitchen to life",
       blocks: [
         {
           type: "text",
           body: [
-            "I designed each play ingredient as a nesting system: the carrot splits into the 'good part,' the peel, and the top. Every scrap piece has a second life somewhere in the kitchen — peels go to the compost drawer that 'grows' a new seedling piece, bones and tops fill the stock pot. Nothing in the set terminates in a trash bin, because the set doesn't have one.",
+            "This might just be my favorite part of the design process. The forms are soft and approachable, scaled for small hands and repeated use. Materials were chosen with durability and reuse in mind, reinforcing the product's values through its physical design. I modeled Lefties Kitchen in Fusion 360 and CNC cut all 33 wooden pieces to start.",
+            "Each piece was hand-sanded and assembled by hand. I built the fridge structure, recessed the hinges using a drill press so the doors sat flush, and added small magnets to reinforce the doors. All food pieces are hand-painted and finished with small velcro elements to support building and recombination during play.",
           ],
         },
         {
           type: "gallery",
           figures: [
             {
-              src: "/images/projects/lefties-kitchen/sketches-1.svg",
-              alt: "Sketches of modular play-food pieces splitting into scraps",
-              caption: "Splitting logic sketches — each cut had to be obvious to small hands and read as 'part of the food,' not a broken toy.",
+              src: "/images/projects/lefties-kitchen/final-2.jpg",
+              alt: "Handmade wooden food pieces from Lefties Kitchen",
+              caption: "33 CNC-cut wooden pieces, each hand-sanded, hand-painted, and finished with velcro for building and recombining.",
             },
             {
-              src: "/images/projects/lefties-kitchen/prototype-1.svg",
-              alt: "Laser-cut prototype of the nesting carrot and compost drawer",
-              caption: "First physical prototype. The compost drawer's 'seedling reward' was added after a tester asked what the peels were for — kids wanted the loop closed.",
+              src: "/images/projects/lefties-kitchen/final-3.png",
+              alt: "The Lefties Kitchen fridge structure",
+              caption: "The fridge build: recessed hinges (drill press) so the doors sit flush, with small magnets reinforcing the close.",
             },
           ],
         },
@@ -83,14 +107,19 @@ export const leftiesKitchen: Project = {
 
   decisions: [
     {
-      title: "No trash bin in the set",
-      decision: "We removed the bin entirely instead of adding a 'compost is better' option beside it.",
-      tradeoff: "A bin would have made the set feel more complete as a kitchen replica, and some parents expected one. But offering disposal as an equal option undermines the entire premise — the constraint is the curriculum. Realism lost; the habit loop won.",
+      title: "Guided and open-ended at once",
+      decision: "The set supports both guided play (recipe cards, challenge prompts) and open-ended exploration — enough direction to get started, with room for imagination.",
+      tradeoff: "A fully scripted toy is easier to explain on a shelf; a fully open one risks kids stalling. Holding both meant designing prompts that start play without ever defining a \"right\" way to build a meal.",
     },
     {
-      title: "Scraps earn play value, not praise",
-      decision: "Scrap pieces unlock new play (stock, seedlings) rather than triggering reward sounds or gold stars.",
-      tradeoff: "Gamified rewards test well in the first session, but our second sessions showed the sticker-style rewards getting ignored while the 'peels become a seedling' loop kept getting replayed. Intrinsic play value is slower to design but it's the part kids re-enact.",
+      title: "Reuse built into the pieces themselves",
+      decision: "Leftovers are the medium: modular \"leftie\" pieces connect, stack, and transform, so reuse is the creative act rather than a lesson attached to it.",
+      tradeoff: "Abstracting foods into modular forms sacrifices some realism — but realism wasn't the goal. The flexibility reflects how leftovers get reimagined in real life, prioritizing creativity and discovery over replication.",
+    },
+    {
+      title: "Durable materials that carry the message",
+      decision: "Wood, hand finishing, and velcro connections were chosen for durability and repeated use, reinforcing the product's values through its physical design.",
+      tradeoff: "Hand fabrication of 33 pieces is slow — CNC cutting, sanding, painting, and assembling each one. The payoff is a toy whose own construction embodies the reuse habits it teaches.",
     },
   ],
 
@@ -99,23 +128,44 @@ export const leftiesKitchen: Project = {
       {
         type: "text",
         body: [
-          "Lefties Kitchen shipped as a full studio prototype: the kitchen structure, my modular food-scrap play system, and packaging that itself folds into a play garden bed. In final play-testing, kids spontaneously narrated waste-reduction stories — 'we have to save the tops for soup!' — without any adult prompting.",
+          "The final system includes modular food pieces, recipe cards, and challenge prompts that encourage kids to see leftovers as a starting point. By building meals from what is already there, kids begin to understand reuse as something intuitive and creative, not restrictive.",
         ],
       },
       {
-        type: "figure",
-        figure: {
-          src: "/images/projects/lefties-kitchen/final-1.svg",
-          alt: "Final Lefties Kitchen prototype with the full scrap-loop play system",
-          caption: "The full loop on the final prototype: cook, scrap, stock, compost, seedling, cook again.",
-        },
-        size: "full",
+        type: "gallery",
+        figures: [
+          {
+            src: "/images/projects/lefties-kitchen/final-1.jpg",
+            alt: "Final Lefties Kitchen set",
+            caption: "The full set: fridge, modular leftie pieces, recipe cards, and challenge prompts.",
+          },
+          {
+            src: "/images/projects/lefties-kitchen/final-4.png",
+            alt: "Lefties Kitchen final detail",
+            caption: "Soft, approachable forms scaled for small hands and repeated use.",
+          },
+        ],
+      },
+      {
+        type: "gallery",
+        figures: [
+          {
+            src: "/images/projects/lefties-kitchen/gallery-1.jpg",
+            alt: "Lefties Kitchen in play",
+            caption: "Want to become a lefties chef?",
+          },
+          {
+            src: "/images/projects/lefties-kitchen/gallery-2.jpg",
+            alt: "Building a meal from leftie pieces",
+            caption: "Building meals from what's already there.",
+          },
+          {
+            src: "/images/projects/lefties-kitchen/gallery-3.jpg",
+            alt: "Lefties Kitchen pieces in play",
+            caption: "Yesterday's leftovers, today's creations.",
+          },
+        ],
       },
     ],
-    results: [
-      "In final sessions, most testers engaged the scrap loop unprompted and several re-explained it to a new child joining play.",
-      "Parents in exit interviews said the set prompted real-kitchen questions at home ('can we make stock?').",
-    ],
-    learned: "Removing an option teaches more than adding a message. Every 'educational' feature we bolted on was ignored; the one thing kids internalized came from what the set refused to include. I now look for the subtractive move first.",
   },
 };

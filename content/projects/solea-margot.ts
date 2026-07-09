@@ -1,94 +1,150 @@
 import type { Project } from "@/lib/types";
 
 /**
- * SCAFFOLD COPY — structure and voice are the model; the specifics are
- * invented. Replace every fact with your real evidence before publishing.
+ * Copy sourced from quinn-burns.com/solea-margot-heel — edited only to fit
+ * the template.
  */
 export const soleaMargot: Project = {
   slug: "solea-margot",
-  title: "Soléa Margot Heel",
-  hook: "A heel that works with the foot, not against it — balance, alignment, and natural movement without giving up the silhouette.",
+  title: "The Soléa Margot Heel",
+  hook: "A heel designed to support you all day.",
   category: "industrial",
-  tags: ["Industrial Design", "Footwear", "Biomechanics"],
-  cover: "/images/projects/solea-margot/cover.svg",
-  coverAlt: "Soléa Margot heel showing the sculpted support geometry",
-  order: 5,
+  tags: ["Footwear Design", "Anthropometric Design", "Fabrication"],
+  cover: "/images/projects/solea-margot/cover.jpg",
+  coverAlt: "The Soléa Margot Heel, hero shot",
+  order: 7,
 
-  role: "Sole designer — biomechanics research, last + heel geometry, CMF, prototyping",
+  role: "Designer & maker — research, 3D scanning, iteration, and fabrication",
   team: "Solo",
-  timeline: "10 weeks · Spring 2024",
-  tools: ["Gait observation", "Pressure mapping", "Rhino", "3D-printed lasts", "KeyShot"],
-  projectType: "Studio project",
+  tools: ["3D scanning", "Anthropometric measurement", "Wool felt", "Recycled wood", "Hand fabrication"],
+  projectType: "Footwear design",
 
-  tldr: "Heels are a rare product category where pain is treated as the price of admission. I studied how weight actually moves through the foot in an elevated shoe — pressure mapping, gait observation, interviews with daily heel-wearers — and redesigned the heel from the ground contact up: a wider, sculpted strike zone, a footbed that follows the arch instead of bridging it, and heel placement under the body's real line of force. The Soléa Margot keeps the visual language of a classic heel while changing everything the body touches.",
+  tldr: "The Soléa Margot Heel blends style and support, with built-in arch support designed specifically for higher arches. It's made for people who love the look of modern heels but don't want to sacrifice comfort, stability, or wearability to get there. Designed from a 3D scan of a real foot outward, and fabricated by hand in wool felt and recycled wood. You shouldn't have to choose between beauty and comfort.",
 
   context: [
     {
       type: "text",
       body: [
-        "Ask people who wear heels daily and the answers repeat: numb forefoot by noon, rolled ankles on any surface that isn't a showroom floor, and a Sunday spent recovering. The industry's response has been gel inserts and 'comfort' marketing — padding the symptoms of a geometry problem.",
-        "The geometry problem is specific: most heels place the post behind the calcaneus's load line and pitch the foot onto a flat, narrow forefoot platform. The body compensates at the knee and lower back. My interviews with daily wearers surfaced the design brief in their own words — nobody asked for a lower heel; everyone asked to stop thinking about their feet.",
+        "Many modern heels prioritize appearance over the foot wearing them. Tall heels and pointed or square toes create a clean, minimal look, but often lack proper arch support and don't adapt well to different foot anatomies — especially higher arches. The result is a shoe that looks great but becomes uncomfortable quickly. The gap isn't style. It's support.",
+        "Comfort in footwear doesn't come from padding alone — it comes from fit, structure, and alignment. Looking at existing heels, a few issues stood out: arch support is often ignored or added as an afterthought, many designs assume a \"standard\" foot shape, slingbacks often shift or gap while walking, and supportive shoes are rarely designed to look refined. Instead of designing a heel and hoping it fit, I focused on designing from the foot outward.",
       ],
     },
     {
       type: "quote",
-      text: "I don't want a comfort shoe. I want this shoe to stop punishing me for standing.",
-      attribution: "Interview participant, wears heels 4–5 days a week",
+      text: "How might a shoe be designed from the foot outward — without compromising style?",
+      attribution: "The design question · Support · Fit · Stability · Proportion · Wearability",
     },
   ],
 
   process: [
     {
-      heading: "Mapping where the weight actually goes",
+      heading: "Human-centered research",
       blocks: [
         {
           type: "text",
           body: [
-            "I ran pressure-mapping sessions comparing barefoot stance, a conventional pump, and lifted test rigs at matching pitch. The conventional heel concentrated load onto a small forefoot zone — the numbness my interviewees described wasn't a padding deficit, it was a distribution failure. That gave the project a measurable target: spread the map.",
-          ],
-        },
-        {
-          type: "figure",
-          figure: {
-            src: "/images/projects/solea-margot/research-1.svg",
-            alt: "Pressure map comparison between a conventional heel and test geometry",
-            caption: "Pressure maps, conventional pump vs. test rig. The angry red island on the left is the entire brief.",
-          },
-          size: "wide",
-        },
-      ],
-    },
-    {
-      heading: "Rebuilding the geometry",
-      blocks: [
-        {
-          type: "text",
-          body: [
-            "Working on 3D-printed lasts, I iterated three variables together — heel-post position, footbed contour, and strike-zone width — because moving any one alone just relocates the problem. The post moved forward under the load line; the footbed gained a sculpted arch channel; the ground contact widened subtly at the strike zone while keeping a slim profile at eye level, where the silhouette is actually judged.",
+            "I started by designing for a real foot (aka my own). Using anthropometric measurements and a 3D scan of my foot, I created a full-scale model that kept my high-arch anatomy central to every decision. This allowed me to test proportions, arch placement, and sole curvature early on, making sure support was built into the structure rather than added later.",
           ],
         },
         {
           type: "compare",
           left: {
-            src: "/images/projects/solea-margot/iterations-1.svg",
-            alt: "Early last iteration with conventional heel post placement",
-            caption: "Iteration 2 — post still too far aft; the pressure map barely moved. A relocated problem, not a solved one.",
+            src: "/images/projects/solea-margot/research-1.png",
+            alt: "3D scan of foot used as the design foundation",
+            caption: "The 3D foot scan — every decision downstream answers to this anatomy.",
           },
           right: {
-            src: "/images/projects/solea-margot/iterations-2.svg",
-            alt: "Later last iteration with forward post and sculpted footbed",
-            caption: "Iteration 5 — post under the load line, arch channel in. This is the version where testers stopped mentioning their feet.",
+            src: "/images/projects/solea-margot/research-2.png",
+            alt: "Full-scale foot model for testing proportions",
+            caption: "The full-scale model used to test proportions, arch placement, and sole curvature early.",
           },
-          caption: "The geometry shift between iterations 2 and 5. From the side, the silhouettes are nearly identical — the change lives where the body is, not where the eye is.",
+        },
+      ],
+    },
+    {
+      heading: "Ideation & sketch models",
+      blocks: [
+        {
+          type: "text",
+          body: [
+            "I explored a wide range of heel forms, from bold blocks to more minimal shapes, always balancing visual weight with stability. I tested different toe box shapes and strap placements to find solutions that held the foot securely without feeling restrictive. Every iteration came back to the same goal: support, comfort, and a clean, modern look.",
+            "Through paper and felt sketch models, I tested heel profiles from cylindrical to block forms and experimented with slingback and wrap-around uppers. Each round of iteration refined the proportions, construction, and cutout shapes. Through testing, I developed a flattened upper template and added two triangular notches instead of one, allowing the felt to wrap smoothly around the square toe and improve fit.",
+          ],
+        },
+        {
+          type: "gallery",
+          figures: [
+            {
+              src: "/images/projects/solea-margot/ideation-1.png",
+              alt: "Heel form exploration sketches",
+              caption: "Heel forms from bold blocks to minimal shapes — visual weight vs. stability, every time.",
+            },
+            {
+              src: "/images/projects/solea-margot/ideation-2.png",
+              alt: "Heel variation studies",
+              caption: "Toe box and strap placement studies: secure without restrictive.",
+            },
+          ],
+        },
+        {
+          type: "gallery",
+          figures: [
+            {
+              src: "/images/projects/solea-margot/sketch-models-1.jpg",
+              alt: "Paper and felt sketch models",
+              caption: "Paper and felt sketch models testing heel profiles from cylindrical to block.",
+            },
+            {
+              src: "/images/projects/solea-margot/sketch-models-2.png",
+              alt: "Sketch model detail of the upper",
+              caption: "Refining the upper: the flattened template that came out of round after round of iteration.",
+            },
+            {
+              src: "/images/projects/solea-margot/sketch-models-3.png",
+              alt: "Sketch model detail of the notched template",
+              caption: "Two triangular notches instead of one — the change that lets the felt wrap smoothly around the square toe.",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      heading: "Development & materials",
+      blocks: [
+        {
+          type: "text",
+          body: [
+            "Sustainability is central to both Soléa and my own design values. I chose 100% wool felt for the upper and recycled wood for the sole. I hand-sanded the wooden sole to follow the natural curve of my foot and introduced a slight rocker to improve walking comfort and offset the rigidity of the wood. Using the final flat layout, I cut and assembled the felt upper, securing it with a blanket stitch for durability and structure.",
+          ],
+        },
+        {
+          type: "gallery",
+          figures: [
+            {
+              src: "/images/projects/solea-margot/materials-1.png",
+              alt: "Materials and construction overview",
+              caption: "100% wool felt upper, recycled wood sole — sustainability as a structural choice, not a footnote.",
+            },
+            {
+              src: "/images/projects/solea-margot/materials-2.png",
+              alt: "Hand-sanded sole construction",
+              caption: "The sole, hand-sanded to the foot's natural curve, with a slight rocker to offset the wood's rigidity.",
+            },
+            {
+              src: "/images/projects/solea-margot/materials-3.png",
+              alt: "Felt upper construction with blanket stitch",
+              caption: "The felt upper assembled from the final flat layout, blanket-stitched for durability and structure.",
+            },
+          ],
         },
         {
           type: "figure",
           figure: {
-            src: "/images/projects/solea-margot/prototype-1.svg",
-            alt: "3D-printed last series showing the geometry evolution",
-            caption: "The last lineage. Printing lasts instead of finished shoes meant a geometry change cost hours, not weeks — which is why there are eight of them.",
+            src: "/images/projects/solea-margot/packaging.jpg",
+            alt: "Soléa packaging design",
+            caption: "The packaging extends the product experience: intentional, sustainable, and minimal — good design carries through every detail.",
           },
-          size: "full",
+          size: "wide",
         },
       ],
     },
@@ -96,19 +152,19 @@ export const soleaMargot: Project = {
 
   decisions: [
     {
-      title: "Fix the geometry, keep the silhouette",
-      decision: "All support changes were constrained to be invisible at conversational distance — the shoe had to read as a classic heel.",
-      tradeoff: "A visibly 'ergonomic' shoe could have gone further biomechanically. But my research was unambiguous: wearers reject shoes that announce comfort. A heel nobody wants to wear helps nobody's alignment. The constraint cost some support ceiling and bought adoption.",
+      title: "Design from the foot outward",
+      decision: "Instead of designing a heel and hoping it fit, I built the shoe around anthropometric measurements and a 3D scan of a real high-arched foot.",
+      tradeoff: "Anchoring to one real anatomy trades universal sizing for genuine fit — and surfaced the arch, curvature, and proportion decisions that 'standard foot' assumptions hide.",
     },
     {
-      title: "Wider at the ground, slim at the eye",
-      decision: "The strike zone flares in the last 15mm before ground contact, below the visual line where the heel reads as 'thin.'",
-      tradeoff: "The flare adds material and complicates the mold, and purists will spot it crouching down. In wear tests it was the single biggest stability gain — testers walked confidently on brick and gravel — so the manufacturing cost was worth it.",
+      title: "Two notches, not one",
+      decision: "Testing led me to a flattened upper template with two triangular notches instead of one, letting the felt wrap smoothly around the square toe.",
+      tradeoff: "A second notch complicates the template and the stitching. It was the difference between a clean wrap and a gapping fit — small change, disproportionate payoff.",
     },
     {
-      title: "Contour over cushion",
-      decision: "The footbed supports through shape — an arch channel matched to the pitched foot — with only minimal padding.",
-      tradeoff: "Cushioning demos better in a two-minute try-on; contour wins at hour six. I optimized for the daily wearer from my interviews, accepting that the shoe feels firmer than a gel-insole competitor in the store.",
+      title: "Wool felt and recycled wood",
+      decision: "I chose 100% wool felt for the upper and recycled wood for the sole, hand-shaping a slight rocker into the sole to offset the wood's rigidity.",
+      tradeoff: "Wood is rigid and unforgiving compared to molded foams; the hand-sanded curve and rocker exist precisely to buy back walking comfort without giving up the sustainable material story.",
     },
   ],
 
@@ -117,24 +173,29 @@ export const soleaMargot: Project = {
       {
         type: "text",
         body: [
-          "The Soléa Margot is a classic silhouette on rebuilt bones: forward post, sculpted footbed, flared strike zone. Pressure mapping on the final prototype showed load spread across a substantially wider zone than the conventional control, and wear-testers' language shifted from managing pain to forgetting the shoe.",
+          "The final design shapes the shoe around real foot anatomy, with built-in arch support that supports the foot throughout the day. From the sculpted sole to the structured upper, every detail is intentional and designed to move with the body. Soléa Margot shows what happens when footwear design starts with the foot.",
         ],
       },
       {
-        type: "figure",
-        figure: {
-          src: "/images/projects/solea-margot/final-1.svg",
-          alt: "Final Soléa Margot heel prototype, profile view",
-          caption: "Final prototype in profile — the entire intervention is invisible from here, which was precisely the point.",
-        },
-        size: "full",
+        type: "gallery",
+        figures: [
+          {
+            src: "/images/projects/solea-margot/final-1.jpg",
+            alt: "Final Soléa Margot Heel, product photo",
+            caption: "The final heel: built-in arch support inside a clean, modern silhouette.",
+          },
+          {
+            src: "/images/projects/solea-margot/final-2.jpg",
+            alt: "Final Soléa Margot Heel, alternate view",
+            caption: "The sculpted sole and structured upper, designed to move with the body.",
+          },
+          {
+            src: "/images/projects/solea-margot/final-3.jpg",
+            alt: "Final Soléa Margot Heel, detail",
+            caption: "You shouldn't have to choose between beauty and comfort.",
+          },
+        ],
       },
     ],
-    results: [
-      "Final pressure maps showed forefoot load spread over a meaningfully wider contact area versus the conventional control at the same pitch.",
-      "Wear-testers completed a full standing workday and reported the shoe 'disappeared' — the exact outcome the interviews asked for.",
-      "Selected for the program's year-end design showcase.",
-    ],
-    learned: "Constraints from the user's identity are real engineering constraints. The 'must still read as a classic heel' rule felt like a limitation until it started making decisions for me — it was the most productive line in the brief. I now write the identity constraint down as explicitly as the load case.",
   },
 };

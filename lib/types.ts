@@ -56,12 +56,13 @@ export interface Project {
   coverAlt: string;
   order: number; // position in the grid (lower = earlier)
 
-  /* ---- Metadata bar ---- */
+  /* ---- Metadata bar ----
+     Only include what's true — missing fields simply don't render. */
   role: string; // my ownership, unambiguous
   team: string; // "Solo" or "With ___ (I led ___)"
-  timeline: string; // "10 weeks · Fall 2025"
-  tools: string[]; // tools & methods
-  projectType: string; // "Studio project", "Client work", "Research"
+  timeline?: string; // "10 weeks · Fall 2025"
+  tools?: string[]; // tools & methods
+  projectType: string; // "Product design", "Toy design", "Research"
 
   /* ---- The story ---- */
   /** 3–4 sentences: problem, what I did, outcome. Must stand alone. */
@@ -77,8 +78,9 @@ export interface Project {
     blocks: Block[];
     /** Bulleted honest results: testing feedback, metrics, exhibition. */
     results?: string[];
-    /** Specific, not generic. One concrete thing this project taught me. */
-    learned: string;
+    /** Specific, not generic. One concrete thing this project taught me.
+     *  Optional — omit rather than write something generic or untrue. */
+    learned?: string;
   };
 }
 

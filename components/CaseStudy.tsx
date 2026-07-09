@@ -180,16 +180,20 @@ export function CaseStudy({ project }: { project: Project }) {
         <dl className="mt-10 grid grid-cols-1 gap-6 rounded-2xl bg-sand p-6 sm:grid-cols-2 sm:p-8 lg:grid-cols-4">
           <MetaItem icon={<IconUser />} label="Role" value={project.role} />
           <MetaItem icon={<IconUsers />} label="Team" value={project.team} />
-          <MetaItem
-            icon={<IconCalendar />}
-            label="Timeline"
-            value={project.timeline}
-          />
-          <MetaItem
-            icon={<IconPencil />}
-            label="Tools & methods"
-            value={project.tools.join(" · ")}
-          />
+          {project.timeline && (
+            <MetaItem
+              icon={<IconCalendar />}
+              label="Timeline"
+              value={project.timeline}
+            />
+          )}
+          {project.tools && project.tools.length > 0 && (
+            <MetaItem
+              icon={<IconPencil />}
+              label="Tools & methods"
+              value={project.tools.join(" · ")}
+            />
+          )}
         </dl>
 
         <div className="relative mt-8 aspect-[16/10] overflow-hidden rounded-2xl bg-sand">
@@ -295,16 +299,18 @@ export function CaseStudy({ project }: { project: Project }) {
             </ul>
           )}
 
-          <Reveal className="mx-auto max-w-2xl">
-            <div className="rounded-2xl bg-sage-wash p-6 sm:p-8">
-              <p className="text-label font-medium uppercase text-sage-deep">
-                What I learned
-              </p>
-              <p className="mt-3 text-body text-ink">
-                {project.outcome.learned}
-              </p>
-            </div>
-          </Reveal>
+          {project.outcome.learned && (
+            <Reveal className="mx-auto max-w-2xl">
+              <div className="rounded-2xl bg-sage-wash p-6 sm:p-8">
+                <p className="text-label font-medium uppercase text-sage-deep">
+                  What I learned
+                </p>
+                <p className="mt-3 text-body text-ink">
+                  {project.outcome.learned}
+                </p>
+              </div>
+            </Reveal>
+          )}
         </div>
       </section>
     </article>
