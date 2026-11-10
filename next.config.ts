@@ -1,11 +1,16 @@
 import type { NextConfig } from "next";
 
+// EXPORT=1 builds a static copy into /out (used for shareable previews).
+const isExport = process.env.EXPORT === "1";
+
 const nextConfig: NextConfig = {
+  ...(isExport ? { output: "export" as const } : {}),
   images: {
+    // Project imagery currently lives on the Wix CDN. Move files into /public
+    // (or another host) later and remove this entry.
+    remotePatterns: [{ protocol: "https", hostname: "static.wixstatic.com" }],
     formats: ["image/avif", "image/webp"],
-    // Placeholder covers/figures are local SVGs; real JPG/PNG swaps need no config.
-    dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    unoptimized: isExport,
   },
 };
 
