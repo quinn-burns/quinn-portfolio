@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { site } from "@/content/site";
+import { pageMeta } from "@/lib/seo";
 import "./globals.css";
 
 // Schibsted Grotesk (Schibsted / Bakken & Bæck, OFL), self-hosted variable font.
@@ -13,15 +14,29 @@ const grotesk = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: `${site.name} — Industrial + Digital Designer`, template: `%s — ${site.name}` },
-  description: site.seoDescription,
-  openGraph: {
-    type: "website",
-    url: site.url,
-    title: site.name,
+  ...pageMeta({
+    title: `${site.name} — ${site.descriptor}`,
     description: site.seoDescription,
+    path: "/",
+    image: "/og/home.png",
+    imageAlt: "Quinn Burns — Designing what’s next. Industrial Design · Physical + Digital Experiences.",
+  }),
+  title: { default: `${site.name} — ${site.descriptor}`, template: `%s — ${site.name}` },
+  applicationName: site.name,
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "16x16 32x32 48x48" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/icon-16.png", type: "image/png", sizes: "16x16" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
-  twitter: { card: "summary_large_image" },
+  manifest: "/manifest.webmanifest",
+  appleWebApp: { title: site.name, statusBarStyle: "default" },
+  formatDetection: { telephone: false, email: false, address: false },
 };
 
 export const viewport: Viewport = { themeColor: "#f7f6f2", colorScheme: "light" };

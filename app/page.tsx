@@ -1,8 +1,19 @@
+import type { Metadata } from "next";
 import { SiteNav } from "@/components/SiteNav";
 import { Hero } from "@/components/Hero";
 import { WorkGallery } from "@/components/WorkGallery";
 import { SiteFooter } from "@/components/SiteFooter";
 import { featured } from "@/content/projects";
+import { site } from "@/content/site";
+import { pageMeta } from "@/lib/seo";
+
+export const metadata: Metadata = pageMeta({
+  title: `${site.name} — ${site.descriptor}`,
+  description: site.seoDescription,
+  path: "/",
+  image: "/og/home.png",
+  imageAlt: "Quinn Burns — Designing what’s next. Industrial Design · Physical + Digital Experiences.",
+});
 
 export default function Home() {
   return (

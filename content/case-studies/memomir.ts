@@ -246,5 +246,5 @@ export const memomir: CaseStudy = {
 
 
   seoDescription:
-    "MemoMir — a two-way mirror with a display behind the glass that brings announcements into everyday routines. Research, interaction design, and a functional physical prototype.",
+    "MemoMir — a two-way mirror with a display behind the glass, bringing announcements into everyday routines. Research and two working prototypes.",
 };

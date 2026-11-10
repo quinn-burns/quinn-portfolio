@@ -221,5 +221,5 @@ export const mise: CaseStudy = {
 
   next: "memomir",
   seoDescription:
-    "Mise — a kitchen light and prep station that translates kitchen sounds into visual cues, bringing alerts, a timer, and food preparation into one workspace for deaf and hard of hearing cooks.",
+    "Mise — an integrated kitchen prep station that translates kitchen sounds into visual cues, with alerts and a timer, for deaf and hard of hearing cooks.",
 };

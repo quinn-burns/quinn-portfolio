@@ -220,5 +220,5 @@ export const melo: CaseStudy = {
 
   next: "mise",
   seoDescription:
-    "Melo — a multifunctional furniture piece for the middle seat of the couch: a curved sapele tabletop, an upholstered footrest, and a sculpted base that doubles as a secondary foot support. SIT Furniture Design Award.",
+    "Melo — a solid sapele piece for the middle seat of a couch, with a tabletop and two footrest options. Recipient of a SIT Furniture Design Award.",
 };
