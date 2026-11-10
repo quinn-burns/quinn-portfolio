@@ -10,6 +10,8 @@ import { Blocks } from "@/components/case-study/Blocks";
 import { ProjectNavigation } from "@/components/case-study/ProjectNavigation";
 import { caseStudies } from "@/content/case-studies";
 import { featured } from "@/content/projects";
+import { site } from "@/content/site";
+import { pageMeta } from "@/lib/seo";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -21,12 +23,15 @@ export const dynamicParams = false;
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const study = caseStudies[(await params).slug];
   if (!study) return {};
-  return {
-    title: study.title,
+  const card = featured.find((p) => p.slug === study.slug);
+  return pageMeta({
+    title: `${study.title}: ${card?.subtitle ?? study.headline} — ${site.name}`,
     description: study.seoDescription,
-    alternates: { canonical: `/work/${study.slug}` },
-    openGraph: { title: study.title, description: study.seoDescription },
-  };
+    path: `/work/${study.slug}`,
+    image: `/og/${study.slug}.jpg`,
+    imageAlt: `${study.title} by ${site.name} — ${study.headline}`,
+    type: "article",
+  });
 }
 
 export default async function CaseStudyPage({ params }: Params) {

@@ -440,5 +440,5 @@ export const aerosense: CaseStudy = {
 
   next: "melo",
   seoDescription:
-    "AeroSense — a connected pediatric ventilation concept that integrates biometric monitoring, portable ventilation, and digital interfaces into one cohesive care system. A student design concept from Georgia Tech’s Health Design Studio with Children’s Healthcare of Atlanta.",
+    "AeroSense — a student design concept for pediatric home ventilation, connecting biometric monitoring, portable ventilation, and caregiver interfaces.",
 };

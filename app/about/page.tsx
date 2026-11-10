@@ -8,13 +8,17 @@ import { ProjectMedia } from "@/components/ProjectMedia";
 import { Reveal, revealBootScript } from "@/components/about/Reveal";
 import { about, type StoryPhoto } from "@/content/about";
 import { site } from "@/content/site";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About",
+export const metadata: Metadata = pageMeta({
+  title: `About — ${site.name}`,
   description:
-    "Quinn Burns is a third-year Industrial Design student and Stamps President’s Scholar at Georgia Tech, driven by one belief: thoughtful design can improve how we live.",
-  alternates: { canonical: "/about" },
-};
+    "Quinn Burns is an Industrial Design student and Stamps President’s Scholar at Georgia Tech who believes thoughtful design can improve how we live.",
+  path: "/about",
+  image: "/og/home.png",
+  imageAlt: "Quinn Burns — Designing what’s next. Industrial Design · Physical + Digital Experiences.",
+  type: "profile",
+});
 
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 
