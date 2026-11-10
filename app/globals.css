@@ -1,120 +1,673 @@
 @import "tailwindcss";
 
-/* ---------------------------------------------------------------------------
-   Design tokens — Quinn Burns portfolio
-   Earthy neutrals as the base, terracotta primary, sage secondary.
-   The work is the hero; color adds warmth, never noise.
---------------------------------------------------------------------------- */
+/*
+  Quinn Burns — homepage system
+  Swiss editorial grid, Scandinavian warmth. Quiet details, bold composition.
+  One family (Schibsted Grotesk) carries everything; contrast comes from scale and weight.
+*/
 
 @theme {
-  /* ---- Color ---- */
+  --color-ivory: #f7f6f2;
+  --color-charcoal: #292b28;
+  --color-stone: #e9e6df;
+  --color-taupe: #c7c1b7;
+  --color-sage: #72877d;
+  /* secondary gray from the brief (3.99:1 on ivory — use at 17px+) */
+  --color-mist: #777b73;
+  /* darker secondary for small text (AA on ivory) */
+  --color-graphite: #5e605b;
 
-  /* Neutrals (warm) */
-  --color-cream: #faf7f1; /* page background */
-  --color-sand: #f2ebdf; /* raised surfaces, cards, image mats */
-  --color-linen: #e6dccb; /* hairline borders, dividers */
-  --color-taupe: #8b7d6b; /* decorative / large-type neutral only */
-  --color-stone: #64584c; /* secondary text — AA on cream */
-  --color-ink: #2a211b; /* primary text, warm near-black */
+  --font-sans: var(--font-grotesk), "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  /* Terracotta — primary accent */
-  --color-terracotta: #c05b35; /* fills, large accents, hover washes */
-  --color-terracotta-deep: #9c421e; /* text-safe: links, small accents — AA on cream */
-  --color-terracotta-wash: #f3e0d5; /* tinted backgrounds, tag fills */
+  /* type scale (fluid). Display is the one loud thing on the page. */
+  --text-display: clamp(3.6rem, 12.4vw, 11.75rem);
+  --text-display--line-height: 0.86;
+  --text-display--letter-spacing: -0.055em;
+  --text-title: clamp(2.25rem, 4.6vw, 4.25rem);
+  --text-title--line-height: 0.95;
+  --text-title--letter-spacing: -0.04em;
+  --text-lede: clamp(1.25rem, 1.75vw, 1.625rem);
+  --text-lede--line-height: 1.28;
+  --text-lede--letter-spacing: -0.012em;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.55;
+  --text-meta: 0.8125rem;
+  --text-meta--line-height: 1.4;
+  --text-label: 0.6875rem;
+  --text-label--line-height: 1.3;
+  --text-label--letter-spacing: 0.1em;
 
-  /* Sage — secondary accent */
-  --color-sage: #98a78b; /* fills, illustration, chart tones */
-  --color-sage-deep: #52644a; /* text-safe sage — AA on cream */
-  --color-sage-wash: #e7ebdf; /* tinted backgrounds, tag fills */
-
-  /* ---- Typography ----
-     Display: Fraunces (variable, optical sizing) — confident, warm serif
-     Body/UI: Instrument Sans — clean, contemporary, no default-template feel
-     Fonts load via next/font in app/layout.tsx; these vars are set there. */
-  --font-display: var(--font-fraunces);
-  --font-sans: var(--font-instrument-sans);
-
-  /* Fluid type scale */
-  --text-display: clamp(2.875rem, 1.6rem + 5.4vw, 5.5rem); /* hero statement */
-  --text-display--line-height: 1.02;
-  --text-display--letter-spacing: -0.02em;
-
-  --text-title: clamp(2rem, 1.45rem + 2.3vw, 3rem); /* page + case study titles */
-  --text-title--line-height: 1.08;
-  --text-title--letter-spacing: -0.015em;
-
-  --text-heading: clamp(1.5rem, 1.3rem + 0.85vw, 1.875rem); /* section headings */
-  --text-heading--line-height: 1.2;
-  --text-heading--letter-spacing: -0.01em;
-
-  --text-subheading: 1.25rem; /* h3, card titles */
-  --text-subheading--line-height: 1.35;
-
-  --text-lede: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem); /* intros, hooks */
-  --text-lede--line-height: 1.55;
-
-  --text-body: 1.0625rem; /* case study prose */
-  --text-body--line-height: 1.7;
-
-  --text-caption: 0.875rem; /* figure captions, card blurbs */
-  --text-caption--line-height: 1.55;
-
-  --text-label: 0.75rem; /* metadata labels, tags, nav */
-  --text-label--line-height: 1.4;
-  --text-label--letter-spacing: 0.08em;
-
-  /* ---- Motion ---- */
-  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
-  --duration-reveal: 600ms;
-
-  /* ---- Radii ---- */
-  --radius-card: 1rem;
-  --radius-tag: 9999px;
+  --ease-out-quiet: cubic-bezier(0.22, 0.61, 0.24, 1);
 }
 
-/* ---- Base ---- */
-
-body {
-  background-color: var(--color-cream);
-  color: var(--color-ink);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-
-::selection {
-  background-color: var(--color-terracotta);
-  color: var(--color-cream);
-}
-
-/* Comfortable reading measure for case study prose */
-@utility measure {
-  max-width: 65ch;
-}
-
-/* Hand-drawn-feeling underline accent (used sparingly: hero, section marks).
-   The squiggle is an inline SVG stroke so it inherits currentColor. */
-@utility underline-sketch {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 9' preserveAspectRatio='none'%3E%3Cpath d='M2 6.5C20 3 38 3.5 59 5.5 80 7.5 100 4 118 3' fill='none' stroke='%23c05b35' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 100% 0.42em;
-  padding-bottom: 0.24em;
-}
-
-/* Scroll reveal — opt-in via .reveal on elements observed by <Reveal/>.
-   Gated on the .js root class so nothing is hidden without JavaScript,
-   and disabled entirely under prefers-reduced-motion. */
-@media (prefers-reduced-motion: no-preference) {
-  .js .reveal {
-    opacity: 0;
-    transform: translateY(1rem);
-    transition:
-      opacity var(--duration-reveal) var(--ease-out-soft),
-      transform var(--duration-reveal) var(--ease-out-soft);
+@layer base {
+  html {
+    background: var(--color-ivory);
+    color: var(--color-charcoal);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
   }
-  .reveal.is-visible {
-    opacity: 1;
-    transform: none;
+  body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    font-feature-settings: "ss01", "tnum" 0;
+  }
+  ::selection {
+    background: var(--color-charcoal);
+    color: var(--color-ivory);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-sage);
+    outline-offset: 3px;
+  }
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* The page frame: 12 columns, gutter scales with the viewport. */
+  .frame {
+    width: 100%;
+    max-width: 1480px;
+    margin-inline: auto;
+    --gutter: max(20px, 3vw);
+    padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+    padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+  }
+  .grid-12 {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 16px;
+  }
+  @media (min-width: 768px) {
+    .grid-12 {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: clamp(16px, 1.7vw, 28px);
+    }
+  }
+
+  .label {
+    font-size: var(--text-label);
+    line-height: var(--text-label--line-height);
+    letter-spacing: var(--text-label--letter-spacing);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* Underline that draws in from the left on hover/focus */
+  .draw-line {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 500ms var(--ease-out-quiet);
+  }
+  /* Small header/footer links: a 44px touch target via an invisible hit area, layout unchanged */
+  header nav a,
+  footer a,
+  .cs-link {
+    position: relative;
+  }
+  header nav a::after,
+  footer a::after {
+    content: "";
+    position: absolute;
+    inset: -12px -6px;
+  }
+  .group:hover .draw-line,
+  .group:focus-visible .draw-line,
+  .draw-line:hover,
+  .draw-line:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  /*
+    Project tile hover — modelled on the live Rover preview at
+    isa-blair-portfolio.figma.site, measured frame by frame:
+    - the image frame tightens ~1.6% toward its top edge (≈5px per side, ≈10px at the bottom)
+    - the label rides up with the frame's bottom edge
+    - the description fades in as it rises
+    - ~400ms on one ease-in-out curve; on leave the text clears almost at once
+      and the frame eases back
+    Transforms only, so neighbours never move. Pointer devices only.
+  */
+  /* Design response rows: behaviour → need → response, separated by hairlines */
+  .cs-response > div { padding-block: 1.1rem; border-top: 1px solid rgb(199 193 183 / 0.6); }
+  .cs-response > div:first-child { border-top: 0; padding-top: 0; }
+  .cs-response > div:last-child { padding-bottom: 0; }
+
+  /* Next-project preview: same height as a full-width 3:2 tile, never cropped */
+  @media (min-width: 768px) {
+    .next-tile { max-width: min(100%, calc(var(--r) * 62vw)); }
+  }
+  /* Selected Work rows: column widths follow each image's proportions */
+  .work-row { grid-template-columns: 1fr; }
+  @media (min-width: 768px) {
+    .work-row { grid-template-columns: var(--cols); }
+  }
+  .tile {
+    --tile-scale: 0.984;
+    --tile-ease: cubic-bezier(0.45, 0, 0.55, 1);
+    /* bottom-edge travel = (1 − scale) × frame height = (1 − scale) × width / ratio */
+    --tile-lift: calc((1 - var(--tile-scale)) * 100cqw / var(--tile-ratio, 0.8));
+    container-type: inline-size;
+  }
+  .tile-frame,
+  .tile-text {
+    transition: transform 380ms var(--tile-ease);
+  }
+  .tile-frame {
+    position: relative;
+    transform-origin: 50% 0;
+  }
+  /* Category labels over the image: quiet, translucent, never a badge */
+  .tile-tags {
+    position: absolute;
+    top: clamp(0.75rem, 1.4vw, 1.25rem);
+    left: clamp(0.75rem, 1.4vw, 1.25rem);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    pointer-events: none;
+    transition: opacity 380ms var(--tile-ease);
+  }
+  .tile-tag {
+    padding: 0.3em 0.6em 0.32em;
+    border-radius: 4px;
+    font-size: clamp(0.6875rem, 0.78vw, 0.78rem);
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--color-charcoal);
+    background: rgb(247 246 242 / 0.78);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+  .tile-hover-media {
+    opacity: 0;
+    transition: opacity 380ms var(--tile-ease);
+  }
+
+  /* Caption: subtitle and description share one grid cell (fixed height). */
+  .tile-caption {
+    display: grid;
+  }
+  .tile-caption > * {
+    grid-area: 1 / 1;
+  }
+  /* Leaving: description clears fast, then the subtitle returns — never both at once. */
+  .tile-desc {
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity 120ms ease-out,
+      transform 120ms ease-out;
+  }
+  .tile-sub {
+    transition: opacity 240ms ease-out 110ms;
+  }
+
+  @media (hover: hover) {
+    .tile-tags { opacity: 0; }
+    .tile:hover .tile-tags,
+    .tile:focus-visible .tile-tags {
+      opacity: 1;
+      transition-duration: 400ms;
+    }
+    .tile:hover .tile-frame,
+    .tile:focus-visible .tile-frame {
+      transform: scale(var(--tile-scale));
+      transition-duration: 400ms;
+    }
+    .tile:hover .tile-text,
+    .tile:focus-visible .tile-text {
+      transform: translateY(calc(-1 * var(--tile-lift)));
+      transition-duration: 400ms;
+    }
+    .tile:hover .tile-hover-media,
+    .tile:focus-visible .tile-hover-media {
+      opacity: 1;
+      transition-duration: 400ms;
+    }
+    /* Entering: subtitle steps aside quickly, description fades up on the main curve. */
+    .tile:hover .tile-sub,
+    .tile:focus-visible .tile-sub {
+      opacity: 0;
+      transition: opacity 120ms ease-in 0ms;
+    }
+    .tile:hover .tile-desc,
+    .tile:focus-visible .tile-desc {
+      opacity: 1;
+      transform: none;
+      transition:
+        opacity 340ms var(--tile-ease) 90ms,
+        transform 400ms var(--tile-ease) 0ms;
+    }
+  }
+  @media (hover: none) {
+    /* Touch: no hover to reveal it, so the tile stays still and shows the subtitle. */
+    .tile-desc,
+    .tile-hover-media {
+      display: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tile:hover .tile-frame,
+    .tile:focus-visible .tile-frame,
+    .tile:hover .tile-text,
+    .tile:focus-visible .tile-text,
+    .tile .tile-desc {
+      transform: none !important;
+    }
+  }
+
+  /* ───────────── Case studies ───────────── */
+
+  .cs-article {
+    /* where the sidebar sticks, and where anchor jumps land */
+    --cs-sticky-top: clamp(2rem, 9vh, 5.5rem);
+    --cs-offset: clamp(2rem, 9vh, 5.5rem);
+  }
+  @media (max-width: 1023.98px) {
+    /* below lg the sticky chapter bar (~3.25rem) sits on top */
+    .cs-article {
+      --cs-offset: 4.75rem;
+    }
+  }
+
+  /* Draft copy ("TK …"): keeps its real type so rhythm can be judged, tagged in sage */
+  .tk::before {
+    content: "TK";
+    display: inline-block;
+    margin-right: 0.45em;
+    font-size: max(0.55em, 0.625rem);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    vertical-align: 0.32em;
+    color: var(--color-sage);
+  }
+
+  /* Chapter navigation — light gray labels, the current one in charcoal */
+  .cs-link {
+    display: inline-block;
+    color: #b0aca4;
+    font-size: clamp(1.0625rem, 1.25vw, 1.25rem);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    transition: color 280ms var(--ease-out-quiet);
+    border-radius: 3px;
+  }
+  .cs-link:hover {
+    color: var(--color-graphite);
+  }
+  .cs-link[aria-current="location"] {
+    color: var(--color-charcoal);
+  }
+  .cs-sidebar .cs-link {
+    padding-block: 0.12em;
+  }
+
+  /* Mobile: a sticky, horizontally scrollable strip */
+  .cs-bar {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 20;
+    margin-inline: calc(-1 * var(--gutter));
+    background: var(--color-ivory);
+    box-shadow: 0 1px 0 color-mix(in oklab, var(--color-taupe) 55%, transparent);
+  }
+  .cs-bar-list {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0.2rem var(--gutter);
+    scroll-padding-inline: var(--gutter);
+  }
+  .cs-bar-list::-webkit-scrollbar {
+    display: none;
+  }
+  .cs-bar-list li {
+    flex: none;
+  }
+  .cs-bar .cs-link {
+    font-size: 1rem;
+    /* 44px-tall touch target; the bar's own padding shrinks to match */
+    padding-block: 0.75rem;
+  }
+
+  /* Detailed diagrams: on phones keep a readable width and pan sideways, edge to edge */
+  .cs-pan-hint { display: none; }
+  @media (max-width: 767.98px) {
+    .cs-pan {
+      margin-inline: calc(-1 * var(--gutter));
+      padding-inline: var(--gutter);
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scrollbar-width: thin;
+      scroll-padding-inline: var(--gutter);
+    }
+    .cs-pan-inner { width: max(100%, var(--pan-w)); }
+    .cs-pan:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+    .cs-pan-hint {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 0.6rem;
+      font-size: var(--text-meta);
+      color: var(--color-mist);
+    }
+    .cs-pan-hint a { color: var(--color-graphite); padding-block: 0.5rem; margin-block: -0.5rem; }
+  }
+
+  /* Bleed images run past the content column to the page edge */
+  .cs-bleed {
+    margin-inline: calc(-1 * var(--gutter));
+  }
+  .cs-bleed-caption {
+    padding-inline: var(--gutter);
+  }
+  @media (min-width: 1024px) {
+    .cs-bleed {
+      margin-left: 0;
+      margin-right: calc(-1 * var(--gutter));
+    }
+    .cs-bleed > div:first-child {
+      border-radius: clamp(12px, 1.5vw, 22px) 0 0 clamp(12px, 1.5vw, 22px);
+    }
+    .cs-bleed-caption {
+      padding-inline: 0;
+    }
+  }
+
+  /* Galleries: columns sized by ratio so every frame in a row shares one height */
+  .cs-gallery {
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 768px) {
+    .cs-gallery {
+      grid-template-columns: var(--cols);
+    }
+  }
+
+  /* Step rows: as many columns as steps (max 4), stacked on small screens */
+  @media (min-width: 768px) {
+    .cs-steps { grid-template-columns: repeat(var(--cols, min(var(--steps), 4)), minmax(0, 1fr)); }
+  }
+
+  /* Device frames for interface recordings */
+  .cs-devices {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: center;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    padding: clamp(2rem, 5vw, 4.5rem) clamp(1rem, 3vw, 3rem);
+    border-radius: clamp(12px, 1.5vw, 22px);
+    background: var(--color-stone);
+  }
+  .cs-device {
+    min-width: 0;
+  }
+  .cs-device-bezel {
+    overflow: hidden;
+    background: var(--color-charcoal);
+    padding: clamp(5px, 0.55vw, 8px);
+  }
+  .cs-device--phone { width: clamp(150px, 17vw, 240px); }
+  .cs-device--phone .cs-device-bezel { border-radius: clamp(22px, 2.6vw, 36px); }
+  .cs-device--phone .cs-device-bezel > div { border-radius: clamp(17px, 2.1vw, 29px); }
+  .cs-device--watch { width: clamp(120px, 13vw, 190px); }
+  .cs-device--watch > div:first-child { background: transparent !important; }
+  .cs-device--phone-landscape { width: clamp(280px, 44vw, 640px); }
+  .cs-device--phone-landscape .cs-device-bezel { border-radius: clamp(22px, 2.6vw, 36px); }
+  .cs-device--phone-landscape .cs-device-bezel > div { border-radius: clamp(17px, 2.1vw, 29px); }
+  .cs-device--screen { width: clamp(240px, 30vw, 440px); }
+  .cs-device--screen .cs-device-bezel { border-radius: clamp(10px, 1.2vw, 16px); }
+  .cs-device--screen .cs-device-bezel > div { border-radius: clamp(6px, 0.8vw, 10px); }
+  .cs-device--desktop { width: min(100%, 640px); }
+  .cs-device--desktop .cs-device-bezel { border-radius: 12px; padding-top: 22px; }
+  .cs-device--desktop .cs-device-bezel > div { border-radius: 4px; }
+  /* Placeholders inside small device frames: name only */
+  .cs-device .cs-device-bezel [role="img"] { padding: 0.75rem; justify-content: flex-end !important; }
+  .cs-device .cs-device-bezel [role="img"] > .label,
+  .cs-device .cs-device-bezel [role="img"] .mt-1 { display: none; }
+  .cs-device .cs-device-bezel [role="img"] .text-meta { font-size: 0.75rem; line-height: 1.25; }
+
+  /* Film poster control — a placeholder poster keeps its label at the top, clear of the title */
+  .film-poster [role="img"] {
+    justify-content: flex-start !important;
+    gap: 0.75rem;
+  }
+  /* Film poster control */
+  .film-title,
+  .film-play {
+    color: var(--color-charcoal);
+  }
+  /* Over a real still: light type on a soft bottom shade */
+  .film-poster:has(img) button {
+    background: linear-gradient(to top, rgb(41 43 40 / 0.55), rgb(41 43 40 / 0) 45%);
+  }
+  .film-poster:has(img) .film-title,
+  .film-poster:has(img) .film-play {
+    color: var(--color-ivory);
+  }
+  .film-play-dot {
+    background: var(--color-ivory);
+    color: var(--color-charcoal);
+    transition: transform 300ms var(--ease-out-quiet);
+  }
+  button:enabled:hover .film-play-dot,
+  button:focus-visible .film-play-dot {
+    transform: scale(1.06);
+  }
+  button:disabled .film-play-dot {
+    opacity: 0.6;
+  }
+
+  /* Annotation pins */
+  .cs-pin {
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--color-charcoal) 18%, transparent);
+  }
+}
+
+/* ── Project navigation (end of every case study) ── */
+@layer components {
+  .project-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 2.5rem;
+    border-top: 1px solid var(--color-taupe);
+    padding-top: clamp(1.25rem, 2.2vw, 1.75rem);
+  }
+  .project-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    min-height: 44px;
+    padding-block: 0.5rem;
+    font-size: clamp(1.0625rem, 1.3vw, 1.25rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: inherit;
+    border-radius: 2px;
+  }
+  .project-nav-link--secondary { font-weight: 400; color: var(--color-graphite, currentColor); }
+  .project-nav-link:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+  .project-nav-arrow {
+    font-size: 0.85em;
+    line-height: 1;
+    transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .project-nav-link:hover .project-nav-arrow--back,
+  .project-nav-link:focus-visible .project-nav-arrow--back { transform: translateX(-3px); }
+  .project-nav-link:hover .project-nav-arrow--out,
+  .project-nav-link:focus-visible .project-nav-arrow--out { transform: translate(2px, -2px); }
+  @media (max-width: 639px) {
+    .project-nav { flex-direction: column; align-items: flex-start; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .project-nav-arrow { transition: none; }
+  }
+}
+
+/* ── About page ── */
+@layer components {
+  .about-hello {
+    font-size: clamp(3.25rem, 7.6vw, 7.75rem);
+    line-height: 0.92;
+    letter-spacing: -0.05em;
+    font-weight: 600;
+  }
+  @media (min-width: 768px) {
+    .about-portrait { padding-top: clamp(2rem, 5vw, 5rem); }
+  }
+  @media (max-width: 767px) {
+    .about-portrait { width: 86%; margin-left: auto; }
+  }
+
+  /* Story photos sit a touch off-square, like prints laid on the page. */
+  .tilt-l { --tilt: -1deg; }
+  .tilt-r { --tilt: 1.2deg; }
+  .tilt-l, .tilt-r { transform: rotate(var(--tilt)); }
+
+  /* ── Collage: two clusters of overlapping prints ── */
+  .collage {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 16px;
+    align-items: start;
+  }
+  .print {
+    --tilt: 0deg;
+    position: relative;
+    min-width: 0;
+    transform: rotate(var(--tilt));
+    transition: transform 700ms var(--ease-out-quiet);
+  }
+  .print-paper {
+    background: #fbfaf7;
+    padding: clamp(5px, 0.55vw, 9px);
+    border-radius: 9px;
+    box-shadow:
+      0 1px 2px rgb(41 43 40 / 0.07),
+      0 18px 36px -18px rgb(41 43 40 / 0.32);
+  }
+  .print-caption {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    margin-top: 0.8rem;
+    max-width: 34ch;
+    /* Captions sit level even when the print above is tilted */
+    transform: rotate(calc(var(--tilt) * -1));
+    transform-origin: 0 0;
+  }
+  .print-caption-title {
+    font-size: clamp(0.9375rem, 1vw, 1rem);
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.008em;
+    color: var(--color-charcoal);
+  }
+  .print-caption-note {
+    font-size: var(--text-meta);
+    line-height: 1.45;
+    color: var(--color-mist);
+  }
+  @media (hover: hover) {
+    .print:hover { transform: rotate(0deg) translateY(-4px); z-index: 5; }
+  }
+
+  /* Mobile: staggered prints, never covering a caption */
+  .collage > * { min-width: 0; }
+  .collage--trail .p1 { grid-column: 1 / -1; grid-row: 1; --tilt: -1deg; }
+  .collage--trail .p2 { grid-column: 2 / -1; grid-row: 2; margin-top: 1.5rem; z-index: 2; --tilt: 1.6deg; }
+  .collage--trail .p3 { grid-column: 1 / 4; grid-row: 3; margin-top: 1.5rem; --tilt: -1.6deg; }
+  .collage--trail .p4 { grid-column: 2 / -1; grid-row: 4; margin-top: 1.5rem; --tilt: 1.2deg; }
+  .collage-text { grid-column: 1 / -1; grid-row: 1; margin-bottom: 2rem; }
+  .collage--everyday .p1 { grid-column: 1 / 3; grid-row: 2; --tilt: -1.6deg; }
+  .collage--everyday .p2 { grid-column: 3 / -1; grid-row: 2; margin-top: 3rem; --tilt: 1.8deg; }
+  .collage--everyday .p3 { grid-column: 1 / -1; grid-row: 3; margin-top: 1.5rem; --tilt: 0.8deg; }
+  .collage--everyday .p4 { grid-column: 2 / -1; grid-row: 4; margin-top: 1.5rem; --tilt: -1deg; }
+
+  @media (min-width: 768px) {
+    .collage {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: clamp(16px, 1.7vw, 28px);
+    }
+    /* Trail: the big film landscape, Alaska standing over its corner, Sherman tucked in below */
+    .collage--trail .p1 { grid-column: 1 / 9; grid-row: 1; }
+    .collage--trail .p2 { grid-column: 8 / 13; grid-row: 1 / 3; margin-top: clamp(4rem, 10vw, 9rem); z-index: 2; }
+    .collage--trail .p3 { grid-column: 2 / 8; grid-row: 2; margin-top: clamp(1.5rem, 3vw, 3rem); }
+    /* Everyday: words then guitar down the left; running and bread overlap on the right */
+    .collage-text { grid-column: 1 / 6; grid-row: 1; align-self: start; margin: clamp(1rem, 3vw, 3rem) 0 0; }
+    .collage--everyday .p3 { grid-column: 1 / 6; grid-row: 2; margin-top: clamp(2.5rem, 5vw, 4.5rem); }
+    .collage--everyday .p1 { grid-column: 6 / 10; grid-row: 1 / 3; }
+    .collage--everyday .p2 { grid-column: 10 / 13; grid-row: 1 / 3; margin-top: clamp(8rem, 17vw, 16rem); margin-left: clamp(-5rem, -4.5vw, -2rem); z-index: 2; }
+    /* keep the running note clear of the bread print that overlaps its edge */
+    .collage--everyday .p1 .print-caption { padding-right: clamp(2.5rem, 5vw, 5.5rem); }
+  }
+
+  /* Notes aside: a quiet nod to a phone note — paper, a soft top bar, one idea */
+  .note {
+    --tilt: -1.2deg;
+    transform: rotate(var(--tilt));
+    background: #fbfaf7;
+    border-radius: 14px;
+    padding: 0.85rem clamp(1.1rem, 1.6vw, 1.4rem) clamp(1.2rem, 1.8vw, 1.5rem);
+    box-shadow:
+      0 1px 2px rgb(41 43 40 / 0.06),
+      0 16px 32px -18px rgb(41 43 40 / 0.28);
+    max-width: 26rem;
+  }
+  .note-bar {
+    display: flex;
+    font-size: var(--text-meta);
+    color: #b5915a;
+    padding-bottom: 0.7rem;
+    margin-bottom: 0.9rem;
+    border-bottom: 1px solid var(--color-stone);
+  }
+  .note-title {
+    font-size: clamp(1.1875rem, 1.6vw, 1.4375rem);
+    font-weight: 600;
+    line-height: 1.22;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  .note-body {
+    margin-top: 0.6rem;
+    font-size: clamp(0.9375rem, 1vw, 1rem);
+    line-height: 1.55;
+    color: var(--color-graphite);
+  }
+
+  /* Reveal on scroll (opt-in via html.reveal-on; off for reduced motion and without JS) */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal-on [data-reveal] {
+      transition:
+        opacity 900ms var(--ease-out-quiet) var(--d, 0ms),
+        transform 1100ms var(--ease-out-quiet) var(--d, 0ms);
+    }
+    .reveal-on [data-reveal]:not([data-shown]) { opacity: 0; transform: translateY(18px) rotate(var(--tilt, 0deg)); }
+    .reveal-on .print[data-reveal]:not([data-shown]) {
+      transform: translateY(34px) rotate(calc(var(--tilt) * 3));
+    }
+    .reveal-on .about-portrait img { transition: transform 1600ms var(--ease-out-quiet); }
+    .reveal-on .about-portrait:not([data-shown]) img { transform: scale(1.06); }
   }
 }

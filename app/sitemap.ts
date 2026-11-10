@@ -1,16 +1,8 @@
-import type { MetadataRoute } from "next";
-import { projects } from "@/lib/projects";
+export const dynamic = "force-static";
 
-const base = "https://quinn-burns.com";
+import type { MetadataRoute } from "next";
+import { site } from "@/content/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    { url: base, changeFrequency: "monthly", priority: 1 },
-    { url: `${base}/about`, changeFrequency: "monthly", priority: 0.8 },
-    ...projects.map((p) => ({
-      url: `${base}/work/${p.slug}`,
-      changeFrequency: "monthly" as const,
-      priority: 0.9,
-    })),
-  ];
+  return [{ url: site.url, lastModified: new Date(), changeFrequency: "monthly", priority: 1 }];
 }

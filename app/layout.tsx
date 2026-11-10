@@ -1,69 +1,53 @@
-import type { Metadata } from "next";
-import { Fraunces, Instrument_Sans } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
+import { site } from "@/content/site";
 import "./globals.css";
-import { Nav } from "@/components/Nav";
-import { Footer } from "@/components/Footer";
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "swap",
-  axes: ["opsz"],
-});
-
-const instrumentSans = Instrument_Sans({
-  subsets: ["latin"],
-  variable: "--font-instrument-sans",
+// Schibsted Grotesk (Schibsted / Bakken & Bæck, OFL), self-hosted variable font.
+const grotesk = localFont({
+  src: "./fonts/SchibstedGrotesk-Variable.woff2",
+  weight: "400 900",
+  variable: "--font-grotesk",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://quinn-burns.com"),
-  title: {
-    default: "Quinn Burns — Industrial & UX Designer",
-    template: "%s — Quinn Burns",
-  },
-  description:
-    "Portfolio of Quinn Burns — industrial and UX designer at Georgia Tech, designing what's next across products, systems, and research.",
+  metadataBase: new URL(site.url),
+  title: { default: `${site.name} — Industrial + Digital Designer`, template: `%s — ${site.name}` },
+  description: site.seoDescription,
   openGraph: {
     type: "website",
-    siteName: "Quinn Burns",
-    url: "https://quinn-burns.com",
+    url: site.url,
+    title: site.name,
+    description: site.seoDescription,
   },
-  twitter: {
-    card: "summary_large_image",
-  },
+  twitter: { card: "summary_large_image" },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export const viewport: Viewport = { themeColor: "#f7f6f2", colorScheme: "light" };
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: site.name,
+    url: site.url,
+    jobTitle: site.descriptor,
+    affiliation: { "@type": "CollegeOrUniversity", name: "Georgia Institute of Technology" },
+    sameAs: [site.linkedin, site.instagram],
+  };
+
   return (
-    <html
-      lang="en"
-      className={`${fraunces.variable} ${instrumentSans.variable}`}
-    >
-      <body className="flex min-h-screen flex-col">
-        {/* Gate scroll-reveal CSS on JS being available, so content is
-            never hidden for no-JS visitors or crawlers. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: "document.documentElement.classList.add('js')",
-          }}
-        />
+    <html lang="en" className={grotesk.variable}>
+      <body>
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-terracotta-deep focus:px-4 focus:py-2 focus:text-cream"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-charcoal focus:px-3 focus:py-2 focus:text-ivory"
         >
           Skip to content
         </a>
-        <Nav />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        {children}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>
   );

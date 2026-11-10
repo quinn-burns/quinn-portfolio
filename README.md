@@ -1,107 +1,73 @@
-# quinn-burns.com
+# Quinn Burns — Portfolio
 
-Quinn Burns' portfolio — Next.js (App Router) + TypeScript + Tailwind CSS, deployed on Vercel.
+Next.js (App Router) + TypeScript + Tailwind CSS v4. Homepage only for now; case studies come after the homepage direction is approved.
 
-## Running locally
-
-Requires Node 20+ (an `.nvmrc` pins Node 22 — run `nvm use` first if your default node is older):
+## Run it
 
 ```bash
-nvm use        # picks up .nvmrc → Node 22
 npm install
-npm run dev    # http://localhost:3000
+npm run dev        # http://localhost:3000
+npm run build      # production build (static)
 ```
 
-`npm run build` runs the production build (do this before deploying if you want to catch errors locally).
+Deploys to Vercel as-is (import the repo, no settings needed).
 
-## How the site is organized
+## Where things live
 
 ```
-app/                  Pages + layout. You should rarely need to touch these.
-components/           Layout code (cards, case-study template, nav, footer).
 content/
-  projects/           ← One file per project. This is where you live.
-  experiments.ts      ← "Always Creating" items.
-  about.ts            ← About page copy + scrapbook photos.
-lib/
-  types.ts            The Project schema (the case-study template's contract).
-  projects.ts         The project registry (import + list).
-public/
-  images/projects/<slug>/   Project images.
-  images/about/             Scrapbook photos.
-  resume.pdf                ← Drop your real resume here (placeholder included).
+  site.ts          name, hero copy, contact links, nav
+  projects.ts      featured projects (order = homepage order), explorations, digital work
+lib/types.ts       content types (Media, FeaturedProject, Exploration)
+components/
+  SiteNav          top navigation
+  Hero             typographic hero
+  GalleryTile      image + title + subtitle, one link; hover tightens the frame and reveals the description
+  HoverVideo       optional hover loop (plays on hover/focus, never under reduced motion)
+  WorkGallery      Selected Work: two-column gallery (feature tiles)
+  ProjectMedia     image / video / labelled placeholder, one component
+  ExplorationGallery  More Explorations (not rendered for now — see app/page.tsx)
+  DigitalWork      ruled list + image for digital/research work
+  TextLink, SiteFooter
+app/
+  layout.tsx       font, metadata, JSON-LD
+  page.tsx         homepage composition
+  globals.css      design tokens (@theme) + small component classes
+  fonts/           Schibsted Grotesk variable (OFL), self-hosted
 ```
 
-**The rule of the repo: content lives in `content/`, layout lives in `components/`.** Adding or editing a case study never requires touching layout code.
+### Editing content
 
-## How to add a project
+- **Reorder featured work:** reorder the `featured` array (fills left → right, two per row). Tiles are 4:5; set `ratio` on a project to override.
+- **Swap a placeholder for a real image:** change `media` from `{ kind: "placeholder", … }` to `{ kind: "image", src, alt, width, height }`. Put files in `public/work/<slug>/` and use `src: "/work/<slug>/hero.jpg"`.
+- **Video:** `{ kind: "video", src: "/work/<slug>/loop.mp4", poster, alt, width, height }` — plays muted and looped.
+- **Hover image or loop (optional):** add `hoverMedia: { kind: "image" | "video", … }` to a featured project; it fades in over the main image on hover.
+- **Crop control:** `focus: "50% 40%"` moves the crop; `fit: "contain"` stops posters/graphics from being cropped.
 
-1. **Copy an existing project file** in `content/projects/` (e.g. `mise.ts`) to `content/projects/<your-slug>.ts`. The slug becomes the URL: `/work/<your-slug>`.
-2. **Fill in the fields.** Your editor enforces the structure — TypeScript will underline anything missing (every project must have a `tldr`, `decisions` with trade-offs, an `outcome.learned`, etc.). That's intentional: the schema is the case-study checklist.
-3. **Register it** in `lib/projects.ts`: add an import and add it to the `all` array. Set its `order` field to position it in the grid.
-4. **Add images** (next section) and run the write-up through `CONTENT_GUIDE.md` before publishing.
+### Images
 
-The block types available inside `context`, `process`, and `outcome` sections:
+Current images load from the Wix CDN (`static.wixstatic.com`, allowed in `next.config.ts`). Before launch, download originals into `public/` and remove the remote pattern so the site doesn't depend on Wix.
 
-| Block | Use for |
-|---|---|
-| `text` | Paragraphs (each string = one paragraph) |
-| `figure` | One image + caption. `size`: `"inset"` (text width), `"wide"` (default), `"full"` |
-| `compare` | Two images side-by-side (before/after, failed vs. worked) |
-| `gallery` | 2–3 smaller artifacts in a grid |
-| `quote` | An interview insight or testing quote, with attribution |
+## Design system
 
-## How to swap images (from Wix or anywhere)
+| Token | Value | Use |
+|---|---|---|
+| ivory | `#F7F6F2` | page |
+| charcoal | `#292B28` | text, rules |
+| stone | `#E9E6DF` | media ground, placeholders |
+| taupe | `#C7C1B7` | secondary rules |
+| sage | `#72877D` | focus ring, project-number hover only |
+| graphite | `#5E605B` | secondary text (derived, AA on ivory) |
 
-Every image is just a file in `public/` plus a path string in a content file.
+Type: Schibsted Grotesk only. Display 700 at up to 188px, titles 600, body 400 at 17px, metadata 13px, labels 11px caps.
 
-1. Export/save your image as JPG or PNG. Aim for ~1600px wide for covers, ~1500px for figures (Next.js generates all smaller responsive sizes automatically — don't pre-resize).
-2. Drop it in `public/images/projects/<slug>/`, e.g. `public/images/projects/mise/cover.jpg`.
-3. In `content/projects/<slug>.ts`, change the path: `cover: "/images/projects/mise/cover.svg"` → `".../cover.jpg"`.
-4. Update the `alt` text and `caption` to match the real image.
+## Case studies
 
-That's it. The `.svg` files are placeholders generated by `node scripts/make-placeholders.mjs` (safe to re-run; it never overwrites `.jpg`/`.png` files). Delete the `.svg` files whenever you like.
+Route: `/work/<slug>` (static). Each case study is one data file in `content/case-studies/` — hero, facts, disclaimer, chapters and blocks — registered in `content/case-studies/index.ts`.
 
-Also swap:
-- **Resume:** replace `public/resume.pdf`.
-- **Scrapbook photos:** drop files in `public/images/about/` and update `content/about.ts`.
-
-## Deploying to Vercel
-
-1. Push this repo to GitHub (`git init`, commit, create a repo, push).
-2. Go to [vercel.com/new](https://vercel.com/new), import the GitHub repo. Vercel auto-detects Next.js — accept the defaults and deploy.
-3. Every push to `main` now deploys automatically; PRs get preview URLs.
-
-## Pointing quinn-burns.com at Vercel (moving off Wix)
-
-Your domain currently points at Wix. Two situations:
-
-**If the domain is *registered* at Wix** (you bought it there): you can either transfer the registration to another registrar (Wix has a "Transfer away from Wix" flow under Domains) or just change its DNS records and leave the registration where it is. Changing DNS is faster and is all Vercel needs.
-
-**Steps (works for any registrar):**
-
-1. In your Vercel project: **Settings → Domains → Add** → enter `quinn-burns.com`, and add `www.quinn-burns.com` too (set the apex as primary; Vercel will redirect www → apex).
-2. Vercel will show you the exact records it wants. As of now they are:
-
-   | Type | Name/Host | Value |
-   |---|---|---|
-   | A | `@` (apex / quinn-burns.com) | `76.76.21.21` |
-   | CNAME | `www` | `cname.vercel-dns.com` |
-
-   Use the values Vercel's dashboard shows you if they differ — that screen is the source of truth.
-3. In Wix (or wherever DNS is managed): **Domains → quinn-burns.com → Manage DNS records**. Delete Wix's existing A record(s) on the apex and its `www` CNAME, then add the two records above.
-4. Wait for DNS propagation (usually minutes, up to 48h). Vercel's Domains page will flip to "Valid configuration" and issue the SSL certificate automatically.
-5. Once it's live, cancel the Wix site plan — but only after confirming the new site loads at the domain. (Keep the domain registration active if it's registered at Wix!)
-
-**Alternative:** in Vercel you can choose "Nameservers" instead of individual records — you'd set the domain's nameservers to `ns1.vercel-dns.com` / `ns2.vercel-dns.com` at Wix. That hands all DNS to Vercel (simplest long-term, but moves any custom email/DNS records you may have, so check for those first).
-
-## SEO checklist (already wired)
-
-- Per-page metadata + title template (`app/layout.tsx`, each page)
-- OpenGraph images: site-wide (`app/opengraph-image.tsx`) and per-project (`app/work/[slug]/opengraph-image.tsx`) — auto-generated, no image files to maintain
-- `sitemap.xml` and `robots.txt` generated from the project registry
-- Clean URLs (`/work/mise`), static-rendered pages, `next/image` optimization
-
-## Writing case studies
-
-Read `CONTENT_GUIDE.md` — it's the pre-publish checklist. All eight current case studies use your real copy (sourced from the Wix site) and your real images. Figure captions and the "Key decisions" trade-off text were derived from that copy to fit the template — worth a read-through in your own voice before going live. The optional fields (`timeline`, `tools`, `outcome.learned`, `outcome.results`) only render when present, so never fill one with something generic or untrue.
+- **Chapters** drive the sidebar: `{ id, label, blocks }`. The `id` is the anchor (`/work/aerosense#design`).
+- **Blocks:** `statement`, `split`, `image` (`wide` | `bleed`), `gallery`, `mediaText`, `annotated`, `devices`, `sequence`, `film`, `interactive`, `subsection`, `credits`. Types live in `lib/case-study-types.ts`.
+- **Draft copy:** start any string with `TK` and it renders with a small sage "TK" tag, so unwritten text is always visible as such.
+- **Missing assets:** use a `placeholder` media item with a label and spec; it renders as a labelled frame.
+- **Navigation:** `components/case-study/CaseStudyNavigation.tsx` — sticky sidebar on desktop (≥1024px), sticky horizontal strip below that. Active chapter via IntersectionObserver; `aria-current="location"`.
+- **Film:** `film` block is click-to-play; set `src` when the video file is in `public/`.
