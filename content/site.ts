@@ -1,6 +1,6 @@
 export const site = {
   name: "Quinn Burns",
-  url: "https://www.quinn-burns.com",
+  url: "https://quinn-burns.vercel.app",
   descriptor: "Industrial + Digital Designer",
   headline: ["Designing", "what’s next."],
   intro:
