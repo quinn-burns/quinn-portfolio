@@ -9,9 +9,7 @@ export const site = {
   email: "quinn.burns.p2p@gmail.com",
   linkedin: "https://www.linkedin.com/in/quinnburns",
   instagram: "https://www.instagram.com/made.by.quinn_/",
-  // Current resume PDF on the Wix site. Replace with /resume.pdf once the file is in /public.
-  resume:
-    "https://www.quinn-burns.com/_files/ugd/1d32f3_e3e59e39f7604774b032abb8224036ea.pdf",
+  resume: "/quinn-burns-resume.pdf",
   footerLine: "Let’s push what’s possible, together.",
   seoDescription:
     "Quinn Burns is an industrial and digital designer at Georgia Tech working across physical products, interfaces, and human-centered research.",

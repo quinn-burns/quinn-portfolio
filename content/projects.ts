@@ -122,7 +122,6 @@ export const explorations: Exploration[] = [
     title: "Dash",
     line: "Hydration that moves with you.",
     discipline: "Outdoor Gear",
-    href: "https://www.quinn-burns.com/dash",
     media: {
       kind: "image",
       src: wix("1d32f3_c50bf20ea85d447e8ae63e8cf11a5450~mv2.jpg"),
@@ -137,7 +136,6 @@ export const explorations: Exploration[] = [
     line: "A step up for your closet.",
     discipline: "Furniture Design",
     credit: "With Sara",
-    href: "https://www.quinn-burns.com/olive",
     media: {
       kind: "image",
       src: wix("1d32f3_107e17aa721346e19787f40bcc80b67d~mv2.jpg"),
@@ -151,7 +149,6 @@ export const explorations: Exploration[] = [
     title: "Soléa Margot Heel",
     line: "A heel designed to support you all day.",
     discipline: "Footwear Design",
-    href: "https://www.quinn-burns.com/solea-margot-heel",
     media: {
       kind: "image",
       src: wix("1d32f3_396a3f3ae6d64dbca431341ea9e029ff~mv2.jpg"),
@@ -165,7 +162,6 @@ export const explorations: Exploration[] = [
     title: "Terra Shelf",
     line: "Making compost part of the routine.",
     discipline: "Sustainable Design",
-    href: "https://www.quinn-burns.com/terra-shelf",
     media: {
       kind: "image",
       src: wix("1d32f3_5d4f0cea445943bfaeb24150d0160842~mv2.png"),
@@ -180,7 +176,6 @@ export const explorations: Exploration[] = [
     title: "Kairn",
     line: "Sound that adapts to where you are.",
     discipline: "Consumer Audio",
-    href: "https://www.quinn-burns.com/kairn",
     media: {
       kind: "image",
       src: wix("1d32f3_7e8bf6204f8c489fb11eb753315f3b5b~mv2.jpg"),
@@ -195,7 +190,6 @@ export const explorations: Exploration[] = [
     title: "Lefties Kitchen",
     line: "A children’s toy where yesterday’s leftovers become today’s creations.",
     discipline: "Toy Design",
-    href: "https://www.quinn-burns.com/lefties-kitchen",
     media: {
       kind: "image",
       src: wix("1d32f3_c855e2aad8a84778850adbc898b3b19a~mv2.png"),
